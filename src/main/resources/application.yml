@@ -1,0 +1,18 @@
+# Server settings (ServerProperties)
+server:
+  port: 8090
+  address: 127.0.0.1
+  sessionTimeout: 30
+  contextPath: /
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+  # ;charset=<encoding> is added
+    content-type: text/html
+  # set to false for hot refresh
+    cache: false
+
+

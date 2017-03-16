@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Hello Spring Boot!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+    <link href="../static/css/core.css"
+          th:href="@{/css/core.css}"
+          rel="stylesheet" media="screen"/>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div><h1 th:text="${message}">原始数据，看见这个说明没有成功!</h1>
+        <h1>部门管理</h1>
+        <!--<table>-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th>ID</th>-->
+                <!--<th>部门名称</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody th:each="deptinfo: ${depts}">-->
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<span th:text="*{deptinfo.id}">ID</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<span th:text="*{deptinfo.name}">Name</span>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    </div>
+</th:block>
+</body>
+</html>
