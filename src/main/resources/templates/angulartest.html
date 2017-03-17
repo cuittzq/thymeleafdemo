@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
+
+    <script src="../static/js/angular.js"
+            th:src="@{/webjars/angularjs/1.3.8/angular.js}"></script>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div ng-app="myApp" ng-controller="customersCtrl">
+        <div><h1 th:text="${message}">原始数据，看见这个说明没有成功!</h1></div>
+        <table>
+            <tr ng-repeat="x in namelist | orderBy : 'Country'">
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Country }}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function ($scope, $http) {
+            $http({
+                method: 'GET',
+                url: '/getDeptInfo/all1',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $scope.namelist = response.data;
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+                $scope.namelist = response.data;
+            });
+        });
+    </script>
+</th:block>
+
+</body>
+</html>

@@ -42,3 +42,4 @@ buildNumber.properties
 .idea/workspace.xml
 springdatatest.iml
 .idea/artifacts/springdatatest_war_exploded.xml
+thymeleafdemo.iml

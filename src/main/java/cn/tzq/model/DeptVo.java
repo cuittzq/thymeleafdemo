@@ -19,6 +19,11 @@ public class DeptVo implements Serializable {
      */
     String name;
 
+    /**
+     * 部门描述
+     */
+    String describe;
+
     public Integer getId() {
         return id;
     }
@@ -33,5 +38,13 @@ public class DeptVo implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 }

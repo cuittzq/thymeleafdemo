@@ -14,30 +14,24 @@
           rel="stylesheet" media="screen"/>
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
+
+    <script src="../static/js/angular.js"
+            th:src="@{/webjars/angularjs/1.3.8/angular.js}"></script>
 </head>
 <body>
 <th:block layout:fragment="content">
     <div>
-        <h1>部门管理</h1>
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>部门名称</th>
-            </tr>
-            </thead>
-            <tbody th:each="deptinfo: ${deptInfos}">
-            <tr>
-                <td>
-                    <span th:text="*{deptinfo.id}">ID</span>
-                </td>
-                <td>
-                    <span th:text="*{deptinfo.name}">Name</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <h1>修改部门信息</h1>
+
     </div>
 </th:block>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('customersCtrl', function($scope, $http) {
+        $http.get("/getDeptInfo/all")
+            .success(function (response) {$scope.namelist = response.data;});
+    });
+</script>
 </body>
 </html>
