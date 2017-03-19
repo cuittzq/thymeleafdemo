@@ -39,4 +39,6 @@ public interface DeptIntegration {
      * @return 部门信息
      */
     DeptVo getDeptInfoByID(Integer deptid);
+
+    boolean deleteDept(DeptVo dept);
 }

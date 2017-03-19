@@ -73,9 +73,23 @@ public class DeptIntegrationImpl implements DeptIntegration {
             String response = HttpUtil.get(String.format("%s/%s", domain, actionurl));
             deptVo = new Gson().fromJson(response, DeptVo.class);
         } catch (Exception ex) {
-        // 反序列化失败。记录日志
+            // 反序列化失败。记录日志
             ex.printStackTrace();
         }
         return deptVo;
+    }
+
+    public boolean deleteDept(DeptVo dept) {
+        String actionurl = String.format("deleteDept");
+        boolean isdeleted = false;
+        try {
+            String response = HttpUtil.post(String.format("%s/%s", domain, actionurl), new Gson().toJson(dept));
+            isdeleted = response == "true";
+        } catch (Exception ex) {
+            // 反序列化失败。记录日志
+            ex.printStackTrace();
+        }
+
+        return isdeleted;
     }
 }

@@ -6,6 +6,7 @@ import cn.tzq.model.DeptVo;
 import cn.tzq.model.BaseRespones;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +49,8 @@ public class HomeController {
     }
 
     @GetMapping("/getDeptInfo/{id}")
-    public String getDeptInfoByID(@PathVariable Integer id,Model model) {
+    @ResponseBody
+    public String getDeptInfoByID(@PathVariable Integer id, Model model) {
         DeptVo deptVo = this.deptIntegration.getDeptInfoByID(id);
         BaseRespones<DeptVo> deptRespones = new BaseRespones(deptVo);
         String resultstr = new Gson().toJson(deptRespones);
@@ -69,5 +71,12 @@ public class HomeController {
     public List<DeptVo> getDeptInfoAll1(Model model) {
         List<DeptVo> deptVoList = this.deptIntegration.getDeptInfoall();
         return deptVoList;
+    }
+
+    @PostMapping("/deleteDept")
+    @ResponseBody
+    public boolean deleteDept(@RequestBody DeptVo deptVo) {
+        this.deptIntegration.deleteDept(deptVo);
+        return true;
     }
 }
