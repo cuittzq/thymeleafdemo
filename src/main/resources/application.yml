@@ -14,5 +14,11 @@ spring:
     content-type: text/html
   # set to false for hot refresh
     cache: false
+  dubbo:
+    application:
+      name: consumer
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    scan: cn.tzq.facade
 
 
