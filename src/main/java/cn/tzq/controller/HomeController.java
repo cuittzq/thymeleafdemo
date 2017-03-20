@@ -4,9 +4,9 @@ import cn.tzq.integration.DeptIntegration;
 import cn.tzq.integration.impl.DeptIntegrationImpl;
 import cn.tzq.model.DeptVo;
 import cn.tzq.model.BaseRespones;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,9 +43,20 @@ public class HomeController {
      */
     @GetMapping("/getDeptInfo/page")
     public String getDeptInfoByPage(Integer pageNumber, Integer pageSize, Model model) {
-        List<DeptVo> deptVoList = this.deptIntegration.getDeptInfobypage(pageNumber, pageSize);
-        model.addAttribute("deptInfos", deptVoList);
-        return "deptinfo";
+        PageInfo<DeptVo> deptVoList = this.deptIntegration.getDeptInfobypage(pageNumber, pageSize);
+        //获得当前页
+        model.addAttribute("pageNum", deptVoList.getPageNum());
+        //获得一页显示的条数
+        model.addAttribute("pageSize", deptVoList.getPageSize());
+        //是否是第一页
+        model.addAttribute("isFirstPage", deptVoList.isIsFirstPage());
+        //获得总页数
+        model.addAttribute("totalPages", deptVoList.getPages());
+        //是否是最后一页
+        model.addAttribute("isLastPage", deptVoList.isIsLastPage());
+
+        model.addAttribute("deptInfos", deptVoList.getList());
+        return "index";
     }
 
     @GetMapping("/getDeptInfo/{id}")

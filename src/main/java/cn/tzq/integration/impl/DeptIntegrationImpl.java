@@ -4,10 +4,13 @@ import cn.tzq.integration.DeptIntegration;
 import cn.tzq.model.DeptVo;
 import cn.tzq.util.HttpUtil;
 import cn.tzq.util.JsonUtil;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhiqiang on 2017/3/17.
@@ -27,12 +30,12 @@ public class DeptIntegrationImpl implements DeptIntegration {
      * @param pageSize   页大小
      * @return 部门信息
      */
-    public List<DeptVo> getDeptInfobypage(Integer pageNumber, Integer pageSize) {
+    public PageInfo<DeptVo> getDeptInfobypage(Integer pageNumber, Integer pageSize) {
         String actionurl = String.format("getdeptInfo/page?pageNumber=%d&pageSize=%d", pageNumber, pageSize);
-        List<DeptVo> deptVos = null;
+        PageInfo<DeptVo> deptVos = null;
         try {
             String response = HttpUtil.get(String.format("%s/%s", domain, actionurl));
-            deptVos = JsonUtil.jsonToList(response, DeptVo.class);
+            deptVos = new Gson().fromJson(response, PageInfo.class);
         } catch (Exception ex) {
             // 反序列化失败。记录日志
             ex.printStackTrace();
@@ -83,7 +86,10 @@ public class DeptIntegrationImpl implements DeptIntegration {
         String actionurl = String.format("deleteDept");
         boolean isdeleted = false;
         try {
-            String response = HttpUtil.post(String.format("%s/%s", domain, actionurl), new Gson().toJson(dept));
+            Map<String, String> headconfig = new HashMap<String, String>();
+            headconfig.put("Content-Type", "application/json");
+            headconfig.put("charset", "UTF-8");
+            String response = HttpUtil.post(String.format("%s/%s", domain, actionurl), new Gson().toJson(dept), headconfig);
             isdeleted = response == "true";
         } catch (Exception ex) {
             // 反序列化失败。记录日志

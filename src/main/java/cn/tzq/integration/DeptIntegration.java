@@ -1,12 +1,8 @@
 package cn.tzq.integration;
 
 import cn.tzq.model.DeptVo;
-import cn.tzq.util.HttpUtil;
-import cn.tzq.util.JsonUtil;
-import com.google.gson.Gson;
-import org.apache.catalina.LifecycleState;
+import com.github.pagehelper.PageInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +19,7 @@ public interface DeptIntegration {
      * @param pageSize   页大小
      * @return 部门信息
      */
-    List<DeptVo> getDeptInfobypage(Integer pageNumber, Integer pageSize);
+    PageInfo<DeptVo> getDeptInfobypage(Integer pageNumber, Integer pageSize);
 
     /**
      * 获取所有部门信息
