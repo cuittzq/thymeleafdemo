@@ -3,6 +3,7 @@ package cn.tzq.facade;
 import cn.tzq.model.DeptVo;
 import com.github.pagehelper.PageInfo;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -13,14 +14,14 @@ public interface DeptDubboService {
      * @param dept 部门信息
      * @return
      */
-    String saveDept(DeptVo dept);
+    Boolean saveDept(DeptVo dept);
 
 
     /**
      * @param dept 部门信息
      * @return
      */
-    boolean deleteDept(DeptVo dept);
+    void deleteDept(DeptVo dept);
 
 
     /**
