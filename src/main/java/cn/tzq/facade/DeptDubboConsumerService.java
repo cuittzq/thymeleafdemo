@@ -1,4 +1,4 @@
-package cn.tzq.integration;
+package cn.tzq.facade;
 import cn.tzq.model.DeptVo;
 import com.github.pagehelper.PageInfo;
 

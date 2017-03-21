@@ -1,11 +1,10 @@
-package cn.tzq.integration.impl;
+package cn.tzq.facade.impl;
 
+import cn.tzq.facade.DeptDubboConsumerService;
 import cn.tzq.facade.DeptDubboService;
-import cn.tzq.integration.DeptDubboConsumerService;
 import cn.tzq.model.DeptVo;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +13,10 @@ import java.util.List;
  * Created by zhiqiang on 2017/3/20.
  */
 @Service("deptDubboConsumerService")
-@Component
 public class DeptDubboConsumerServiceImpl implements DeptDubboConsumerService {
 
     @Reference(version = "1.0.0")
-    public DeptDubboService deptDubboService;
+    DeptDubboService deptDubboService;
 
     /**
      * @param dept 部门信息
@@ -44,7 +42,7 @@ public class DeptDubboConsumerServiceImpl implements DeptDubboConsumerService {
      */
     @Override
     public DeptVo getdeptInfo(Integer id) {
-        return deptDubboService.getdeptInfo(id);
+        return deptDubboService.getDeptInfo(id);
     }
 
     /**
@@ -56,7 +54,7 @@ public class DeptDubboConsumerServiceImpl implements DeptDubboConsumerService {
      */
     @Override
     public PageInfo<DeptVo> getdeptInfoByPage(Integer pageNumber, Integer pageSize) {
-        return deptDubboService.getdeptInfoByPage(pageNumber, pageSize);
+        return deptDubboService.getDeptInfoByPage(pageNumber, pageSize);
     }
 
     /**

@@ -16,7 +16,7 @@ spring:
     cache: false
   dubbo:
     application:
-      name: consumer
+      name: consumertest
     registry:
       address: zookeeper://127.0.0.1:2181
     scan: cn.tzq.facade

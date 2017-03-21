@@ -27,7 +27,7 @@ public interface DeptDubboService {
      * @param id 部门ID
      * @return
      */
-    DeptVo getdeptInfo(Integer id);
+    DeptVo getDeptInfo(Integer id);
 
     /**
      * 分页获取部门信息
@@ -36,7 +36,7 @@ public interface DeptDubboService {
      * @param pageSize
      * @return
      */
-    PageInfo<DeptVo> getdeptInfoByPage(Integer pageNumber, Integer pageSize);
+    PageInfo<DeptVo> getDeptInfoByPage(Integer pageNumber, Integer pageSize);
 
     /**
      * @param pageNumber

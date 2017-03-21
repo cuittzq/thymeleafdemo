@@ -1,8 +1,8 @@
 package cn.tzq.controller;
 
 import cn.tzq.integration.DeptIntegration;
-import cn.tzq.integration.DeptDubboConsumerService;
-import cn.tzq.integration.impl.DeptDubboConsumerServiceImpl;
+import cn.tzq.facade.DeptDubboConsumerService;
+import cn.tzq.facade.impl.DeptDubboConsumerServiceImpl;
 import cn.tzq.integration.impl.DeptIntegrationImpl;
 import cn.tzq.model.DeptVo;
 import cn.tzq.model.BaseRespones;
